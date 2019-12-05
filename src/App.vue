@@ -1,16 +1,39 @@
 <template>
   <div id="app">
     <Navigation/>
+    
+    <ShoppingList v-bind:items ="items"/>
   </div>
 </template>
 
 <script>
 import Navigation from './components/NavigationBar';
+import ShoppingList from './components/ShoppingList';
+
 
 export default {
   name: 'app',
   components:{
-    Navigation
+    Navigation,
+    ShoppingList
+  },
+  data() {
+    return {
+      items: [
+      {
+        name: 'milk',
+        id: 1
+      },
+      {
+        name: 'steaks',
+        id: 2
+      },
+      {
+        name: 'eggs',
+        id: 3
+      },
+    ]
+    }
   }
 }
 </script>

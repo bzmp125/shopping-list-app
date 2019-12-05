@@ -26,6 +26,7 @@ export default {
         justify-content: space-between;
         height: 10vh;
         padding: 0.5em;
+        margin-bottom: 1em;
 
     }
 
