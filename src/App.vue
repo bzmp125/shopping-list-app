@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <h1>Shopping List App</h1>
+    <Navigation/>
   </div>
 </template>
 
 <script>
+import Navigation from './components/NavigationBar';
 
 export default {
   name: 'app',
-
+  components:{
+    Navigation
+  }
 }
 </script>
 
@@ -16,5 +19,6 @@ export default {
  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
  #app{
    font-family: 'Montserrat', sans-serif;
+   box-sizing: border-box;
  }
 </style>
