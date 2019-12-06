@@ -5,7 +5,7 @@
      </div>
 
          <ul>
-             <li><a href="https://github.com/JackieBinya" target="_blank">Github</a></li>
+             <li><a href="https://github.com/JackieBinya/shopping-list-app" target="_blank">Github</a></li>
              <li><a href="https://www.linkedin.com/in/jacqueline-binya-b8025b195/" target="_blank">Linkedin</a></li>
          </ul>
      
