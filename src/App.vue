@@ -1,40 +1,56 @@
 <template>
   <div id="app">
     <Navigation/>
-    
-    <ShoppingList v-bind:items ="items"/>
+    <ShoppingList v-bind:items ="items" v-on:del:item="delItem"/>
+    <AddItem v:bind:item="item" v-on:add:item="updateItems"/>
   </div>
 </template>
 
 <script>
+import { uuid } from 'uuidv4';
 import Navigation from './components/NavigationBar';
 import ShoppingList from './components/ShoppingList';
-
+import AddItem from './components/AddItem';
 
 export default {
   name: 'app',
   components:{
     Navigation,
-    ShoppingList
+    ShoppingList,
+    AddItem,
   },
   data() {
     return {
       items: [
       {
         name: 'milk',
-        id: 1
+        id: uuid()
       },
       {
         name: 'steaks',
-        id: 2
+        id: uuid()
       },
       {
-        name: 'eggs',
-        id: 3
+        name: 'candy',
+        id: uuid()
+      },
+       {
+        name: 'water',
+        id: uuid()
       },
     ]
     }
-  }
+  },
+
+  methods:{
+    updateItems(name){
+      this.items = [...this.items,{name, id:uuid()}];
+    },
+
+    delItem(id){
+      this.items = this.items.filter(item => item.id !== id)
+    },
+  },
 }
 </script>
 
@@ -44,4 +60,22 @@ export default {
    font-family: 'Montserrat', sans-serif;
    box-sizing: border-box;
  }
+ 
+  input{
+        font-size: 1rem;
+        outline: none;
+        font-family: inherit;
+        border: none;
+        width: 40vw;
+    }
+
+  .icon{
+       border: none;
+       outline:none;
+       background: transparent;
+   }
+
+   .icon:hover{
+     color: aquamarine;
+   }
 </style>
