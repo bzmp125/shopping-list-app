@@ -8,7 +8,7 @@
                    <button class="icon">
                         <i class="material-icons" @click="toggleState(); setId(item.id)"  v-show="!item.isPurchased">create</i>   
                    </button>
-                    <span :class="{strikeout: item.isPurchased}"  @click="togglePurchase(item.id)">{{item.name}}"</span>
+                    <span :class="{strikeout: item.isPurchased}"  @click="togglePurchase(item.id)">{{item.name}}</span>
                 </div>
                 <div>
                    <button @click="delItem(item.id)"  class="icon">

@@ -2,7 +2,11 @@
   <div id="app">
     <Navigation/>
     <ShoppingList :items ="items" @del:item="delItem" @edit:item="editItem" @toggle:purchase="togglePurchase"/>
+     <div class="no-items" v-if="!items.length">
+       <h3> <span>Ooops!</span> you have no items to display!</h3>
+    </div>
     <AddItem :item="items" @add:item="addItem"/>
+    
   </div>
 </template>
 
@@ -22,28 +26,7 @@ export default {
   data() {
     return {
       index: '',
-      items: [
-      {
-        name: 'milk',
-        id: uuid(),
-        isPurchased: false
-      },
-      {
-        name: 'steaks',
-        id: uuid(),
-        isPurchased: true,
-      },
-      {
-        name: 'candy',
-        id: uuid(),
-        isPurchased: false,
-      },
-       {
-        name: 'water',
-        id: uuid(),
-        isPurchased: false,
-      },
-    ]
+      items: [],
     }
   },
 
@@ -105,5 +88,16 @@ export default {
 
    .icon:hover{
      color: aquamarine;
+   }
+
+   .no-items{
+     position: absolute;
+     z-index: 45000;
+     background-color: azure;
+     height: 30vh;
+     width: 35vw;
+     top: 25vh;
+     left: 30vw;
+     padding: 2em;
    }
 </style>

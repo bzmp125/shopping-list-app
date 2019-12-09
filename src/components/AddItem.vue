@@ -3,7 +3,7 @@
       <div class="item-container">
            <input type="text" v-model="newItem" placeholder="Type a new shopping item here..." @keyup.enter="addItem">
       </div>
-       <button @click="addItem" class="icon btn add">
+       <button @click="addItem" class="icon btn add" :disabled="!newItem.length">
            Add
        </button>
     </div>
