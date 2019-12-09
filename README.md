@@ -6,7 +6,7 @@ _This is a static web app, which is a simple crud application. I created it so a
 ## General Description
 _A user is able to add items to the shopping list, read the items, and has options to delete and edit existing items._
 
-### URL
+## Project's URL
 https://youthful-wescoff-90f50a.netlify.com/
 
 ## Project setup
