@@ -84,10 +84,12 @@ export default {
      text-transform: uppercase;
      border: 2px solid aquamarine;
      padding: 6px 48px;
+     cursor:pointer;
     }
 
    .icon:hover{
      color: aquamarine;
+     cursor: pointer;
    }
 
    .no-items{
