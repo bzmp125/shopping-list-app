@@ -88,6 +88,7 @@ export default {
        padding: 0.3em;
        background-color: azure;
        margin: 0.4em;
+       cursor: pointer;
    }
 
    ::-webkit-scrollbar {
