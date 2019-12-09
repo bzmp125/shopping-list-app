@@ -1,10 +1,10 @@
 <template>
     <div class="container">
       <div class="item-container">
-           <input type="text" v-model="newItem" placeholder="Type a new shopping item here...">
+           <input type="text" v-model="newItem" placeholder="Type a new shopping item here..." @keyup.enter="addItem">
       </div>
-       <button @click="addItem" class="icon add">
-           <i class="material-icons">add</i>
+       <button @click="addItem" class="icon btn add">
+           Add
        </button>
     </div>
 </template>
@@ -37,9 +37,9 @@ export default {
         align-items: center;
     }
 
-   .add{
-     margin-left: 1em;
-   }
+  .add{
+     margin-left: 4em;
+   } 
 
    .item-container{
         border-bottom: 4px solid aquamarine;

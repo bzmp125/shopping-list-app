@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Navigation/>
-    <ShoppingList v-bind:items ="items" v-on:del:item="delItem"/>
-    <AddItem v:bind:item="item" v-on:add:item="updateItems"/>
+    <ShoppingList :items ="items" @del:item="delItem" @edit:item="editItem" @toggle:purchase="togglePurchase"/>
+    <AddItem :item="items" @add:item="addItem"/>
   </div>
 </template>
 
@@ -21,34 +21,52 @@ export default {
   },
   data() {
     return {
+      index: '',
       items: [
       {
         name: 'milk',
-        id: uuid()
+        id: uuid(),
+        isPurchased: false
       },
       {
         name: 'steaks',
-        id: uuid()
+        id: uuid(),
+        isPurchased: true,
       },
       {
         name: 'candy',
-        id: uuid()
+        id: uuid(),
+        isPurchased: false,
       },
        {
         name: 'water',
-        id: uuid()
+        id: uuid(),
+        isPurchased: true,
       },
     ]
     }
   },
 
   methods:{
-    updateItems(name){
-      this.items = [...this.items,{name, id:uuid()}];
+    addItem(name){
+      this.items = [...this.items,{name, id:uuid(), purchased: false}];
     },
 
     delItem(id){
+      this.index = 'hello';
       this.items = this.items.filter(item => item.id !== id)
+    },
+
+    editItem({item, id}){
+     this.index = this.items.findIndex(listItem => listItem.id === id);
+     this.items[this.index].name = item;
+     this.index='';
+    },
+
+    togglePurchase(id){
+     this.index = this.items.findIndex(listItem => listItem.id === id);
+     this.items[this.index].isPurchased =! this.items[this.index].isPurchased
+     this.index='';
     },
   },
 }
@@ -67,6 +85,7 @@ export default {
         font-family: inherit;
         border: none;
         width: 40vw;
+        padding: 0.5em;
     }
 
   .icon{
@@ -74,6 +93,15 @@ export default {
        outline:none;
        background: transparent;
    }
+
+     .btn{
+     font-weight: bold;
+     font-size: 1rem;
+     font-family: inherit;
+     text-transform: uppercase;
+     border: 2px solid aquamarine;
+     padding: 6px 48px;
+    }
 
    .icon:hover{
      color: aquamarine;

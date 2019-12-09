@@ -1,14 +1,14 @@
 <template>
     <div class="container">
-    <h3>Shopping List Items</h3>
+    <h2>Shopping List Items</h2>
     <ul>
-        <li v-for="(item, index) in reverseItems" :key="index">
+        <li v-for="item in reverseItems" :key="item.id">
             <div class="item-container">
                 <div>
                    <button class="icon">
-                        <i class="material-icons">create</i>   
+                        <i class="material-icons" @click="toggleState(); setId(item.id)"  v-show="!item.isPurchased">create</i>   
                    </button>
-                    {{item.name}}
+                    <span :class="{strikeout: item.isPurchased}"  @click="togglePurchase(item.id)">{{item.name}}"</span>
                 </div>
                 <div>
                    <button @click="delItem(item.id)"  class="icon">
@@ -18,14 +18,25 @@
             </div>
         </li>
     </ul>
+     <Modal  :items ="items" :id="itemId" v-if="edit" @update:item="editItem" @toggle:state = "toggleState"/>
     </div>
 </template>
 
 <script>
+import Modal from './Modal';
 export default {
     name: 'ShoppingList',
     props:{
         items: Array,
+    },
+    components:{
+        Modal,
+    },
+    data(){
+        return {
+            edit: false,
+            itemId: '',
+        }
     },
 
     computed:{
@@ -37,8 +48,25 @@ export default {
     methods:{
      delItem: function(id) {
          this.$emit('del:item', id);
-     }
-}
+     },
+
+     toggleState: function(){
+         this.edit = !this.edit;
+     },
+
+     setId(id){
+       this.itemId = id;
+     },
+
+     editItem(payload){
+          this.$emit('edit:item', payload);
+          
+       },
+
+    togglePurchase(id){
+        this.$emit('toggle:purchase', id); 
+    }
+   }
 }
       
 </script>
@@ -78,11 +106,16 @@ export default {
         margin: 0 auto;
         max-width: 60%;
         padding: 0.5em;
+        
     }
 
     .item-container{
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .strikeout{
+        text-decoration: line-through;
     }
 </style>
