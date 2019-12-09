@@ -41,7 +41,7 @@ export default {
        {
         name: 'water',
         id: uuid(),
-        isPurchased: true,
+        isPurchased: false,
       },
     ]
     }
@@ -49,7 +49,7 @@ export default {
 
   methods:{
     addItem(name){
-      this.items = [...this.items,{name, id:uuid(), purchased: false}];
+      this.items = [...this.items,{name, id:uuid(), isPurchased: false}];
     },
 
     delItem(id){
