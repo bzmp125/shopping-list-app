@@ -12,6 +12,7 @@
 
 <script>
 import { uuid } from 'uuidv4';
+import { getLS, setLS } from './utils';
 import Navigation from './components/NavigationBar';
 import ShoppingList from './components/ShoppingList';
 import AddItem from './components/AddItem';
@@ -26,30 +27,34 @@ export default {
   data() {
     return {
       index: '',
-      items: [],
+      items: getLS('items') || [],
     }
   },
 
   methods:{
     addItem(name){
       this.items = [...this.items,{name, id:uuid(), isPurchased: false}];
+      setLS('items', this.items);
     },
 
     delItem(id){
       this.index = 'hello';
       this.items = this.items.filter(item => item.id !== id)
+      setLS('items', this.items);
     },
 
     editItem({item, id}){
      this.index = this.items.findIndex(listItem => listItem.id === id);
      this.items[this.index].name = item;
      this.index='';
+     setLS('items', this.items);
     },
 
     togglePurchase(id){
      this.index = this.items.findIndex(listItem => listItem.id === id);
      this.items[this.index].isPurchased =! this.items[this.index].isPurchased
      this.index='';
+     setLS('items', this.items);
     },
   },
 }
